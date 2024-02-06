@@ -17,13 +17,18 @@ public abstract class PlayerBaseState : State
         stateMachine.CharacterController.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
     }
 
+    protected void Move(float deltaTime)
+    {
+        Move(Vector3.zero, deltaTime);
+    }
+
     protected void FaceTarget()
     {
         if (stateMachine.Targeter.CurrentTarget == null)
         {
             return;
         }
-        
+
         var lookPos = stateMachine.Targeter.CurrentTarget.transform.position - stateMachine.transform.position;
         lookPos.y = 0f;
 

@@ -19,6 +19,12 @@ public class PlayerTargetingState : PlayerBaseState
     }
     public override void Tick(float deltaTime)
     {
+        if (stateMachine.InputReader.IsAttacking)
+        {
+            stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
+            return;
+        }
+
         if (stateMachine.Targeter.CurrentTarget == null)
         {
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
@@ -56,7 +62,7 @@ public class PlayerTargetingState : PlayerBaseState
 
     private void UpdateAnimator(float deltaTime)
     {
-        if(stateMachine.InputReader.MovementValue.y == 0)
+        if (stateMachine.InputReader.MovementValue.y == 0)
         {
             stateMachine.Animator.SetFloat(TARGETINGFORWARDHASH, 0, 0.1f, deltaTime);
         }

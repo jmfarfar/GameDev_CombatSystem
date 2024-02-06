@@ -20,6 +20,9 @@ public class PlayerStateMachine : StateMachine
     public float RotationDamping { get; private set; }
 
     [field: SerializeField]
+    public Attack[] Attacks { get; private set; }
+
+    [field: SerializeField]
     public Animator Animator { get; private set; }
 
     [field: SerializeField]
