@@ -9,6 +9,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
 
     private const float ANIMATORDAMPTIME = 0.1f;
+    private const float CROSSFADEDURATION = 0.1f;
 
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
@@ -17,7 +18,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.InputReader.TargetEvent += OnTarget;
-        stateMachine.Animator.Play(FREELOOKBLENDTREEHASH);
+        stateMachine.Animator.CrossFadeInFixedTime(FREELOOKBLENDTREEHASH, CROSSFADEDURATION);
     }
     public override void Tick(float deltaTime)
     {
